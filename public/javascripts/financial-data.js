@@ -1,5 +1,5 @@
 const coindeskApi = axios.create({
-    baseURL: 'http://api.coindesk.com/v1/bpi/historical/close.json'
+    baseURL: 'https://api.coindesk.com/v1/bpi/historical/close.json'
 })
 
 const standardLoad = () => {
@@ -12,8 +12,8 @@ const standardLoad = () => {
 const filterLoad = () => {
     const startDate = document.getElementById('startDate').value
     const endDate = document.getElementById('endDate').value
-    const receiveData = coindeskApi
-    .get(startDate, endDate)
+    coindeskApi
+    .get('', { params: { start: startDate, end: endDate } })
     .then(response => printChart(response.data))
     .catch(error => alert('No se pudo procesar la solicitud'))
 }
@@ -30,6 +30,8 @@ const printChart = (receiveData) => {
     console.log('Prices',bpiDataPrices)
 
     const ctx = document.getElementById("myChart").getContext("2d");
+    const existingChart = Chart.getChart(ctx.canvas);
+    if (existingChart) existingChart.destroy();
     new Chart(ctx, {
         type: "line",
         data: {

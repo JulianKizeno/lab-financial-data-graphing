@@ -7,6 +7,7 @@ Repositorio: `JulianKizeno/lab-financial-data-graphing`. Rama: `security/review-
 - Upgrade the separately loaded Axios CDN script from 0.19.2 to 1.20.0
 - Upgrade vulnerable nodemon development server to the maintained v3 release line
 - Remove committed environment values and add a value-free template; rotate any previously exposed credentials/signing secrets (history retained)
+- Upgrade vulnerable Chart.js 2.4.0 to 4.5.1; pin available CDN bundles, use HTTPS and preserve filtering/repeated chart rendering
 
 ## Auditoría npm después de los cambios
 
@@ -16,7 +17,7 @@ Repositorio: `JulianKizeno/lab-financial-data-graphing`. Rama: `security/review-
 
 ## Verificación
 
-- Revisión estática del cambio; sin prueba de despliegue ni verificación de servicios externos.
+- Chromium: Chart.js 4.5.1 renders fixture data, HTTPS API filter parameters, repeated chart rendering succeeds, no page script errors; external API mocked; correctos.
 
 ## Límites y configuración
 
